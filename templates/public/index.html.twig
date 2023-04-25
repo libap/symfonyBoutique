@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Bienvenue sur notre site {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        /* Styles for product items */
+        .product-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 30%;
+            margin-right: 10px;
+            margin-bottom: 20px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .product-item h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .product-item p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .product-item small {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .product-item a {
+            display: block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            margin-top: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            width: 100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+   <h1>Bienvenue sur le site de vente en ligne de jeux vidéo</h1>
+   {% for product in list %}
+   <div class="product-item">
+         
+
+      <h2>Name: {{ product.name }}</h2>
+      <p>Description: {{ product.description }}</p>
+      <small>Price: {{ product.price }} €</small>
+      <p>Platforms: {{ product.platforms }}</p>
+      <p>Release date: {{ product.releaseDate|date('d/m/y') }}</p>
+      <a href="{{ path('app_order', {'id':product.id}) }}">Order this game !</a>
+   </div>
+   {% endfor %}
+{% endblock %}
